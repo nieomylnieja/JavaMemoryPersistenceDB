@@ -1,6 +1,6 @@
 package model;
 
-import Utils.EmployeePayload;
+import utils.EmployeePayload;
 
 public abstract class Employee {
     private int id;

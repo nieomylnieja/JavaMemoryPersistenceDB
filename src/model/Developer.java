@@ -1,6 +1,6 @@
 package model;
 
-import Utils.EmployeePayload;
+import utils.EmployeePayload;
 import interfaces.DevelopersCheck;
 
 import java.util.Scanner;

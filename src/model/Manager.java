@@ -1,6 +1,6 @@
 package model;
 
-import Utils.EmployeePayload;
+import utils.EmployeePayload;
 
 import java.util.ArrayList;
 import java.util.List;

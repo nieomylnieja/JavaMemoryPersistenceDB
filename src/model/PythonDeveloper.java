@@ -1,6 +1,6 @@
 package model;
 
-import Utils.*;
+import utils.*;
 
 public class PythonDeveloper extends Developer {
     private boolean knowsFlask;

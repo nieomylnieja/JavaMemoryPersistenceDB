@@ -1,4 +1,4 @@
-import Utils.Utils;
+import utils.Utils;
 import interfaces.DevelopersCheck;
 import model.*;
 import factory.EmployeeFactory;
@@ -41,6 +41,9 @@ public class Main {
                 case "help":
                     Utils.printTextFile("help.txt");
                     break;
+                case "exit":
+                    System.out.println("Exiting program. Goodbye!");
+                    return;
                 default:
                     System.out.println("Wrong command name!");
                     break;

@@ -1,6 +1,6 @@
 package model;
 
-import Utils.*;
+import utils.*;
 
 public class JavaDeveloper extends Developer {
     private boolean knowsSpring;

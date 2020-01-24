@@ -1,6 +1,6 @@
 package model;
 
-import Utils.EmployeePayload;
+import utils.EmployeePayload;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;

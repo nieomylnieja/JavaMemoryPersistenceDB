@@ -1,6 +1,6 @@
 package factory;
 
-import Utils.*;
+import utils.*;
 import model.*;
 
 import java.security.NoSuchAlgorithmException;
