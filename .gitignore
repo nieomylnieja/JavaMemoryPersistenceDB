@@ -1,6 +1,9 @@
 # JetBrains
 .idea/
 
+# Compiled OUT
+out/
+
 # Compiled class file
 *.class
 
