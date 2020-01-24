@@ -1,0 +1,9 @@
+Below rests the entire commands list.
+Type the cmd in brackets to get the appropriate result.
+1) "do" - perform a global productivity check
+2) "view_by_str" - get all employees whose data contains a given str or int
+3) "view_by_type" - get all employees of a given type
+4) "view_all" - lists all employees
+5) "delete" - remove an employee providing an id
+6) "new" - adds new employee
+7) "help" - displays the help screen
