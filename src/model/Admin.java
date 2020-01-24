@@ -19,7 +19,7 @@ public class Admin extends Employee {
     public Admin(EmployeePayload payload, int keyBitSize, String algName) throws NoSuchAlgorithmException {
         super(payload);
         this.secretKey = generateSecretKey(keyBitSize, algName);
-        System.out.printf("Secret key generated successfully!" +
+        System.out.printf("Secret key generated successfully!\n" +
                 "Base64 encoded: %s\n" +
                 "Be sure to write it down!\n", decodedSecretKey());
     }
@@ -47,7 +47,11 @@ public class Admin extends Employee {
             if (scan.nextLine().equals(this.password)) {
                 return true;
             }
-            System.out.printf("You have %d more attempts left!\n", 3 - attempts);
+            if (2 - attempts == 0){
+                System.out.println("You have no attempts left!");
+            } else {
+                System.out.printf("You have %d more attempts left!\n", 2 - attempts);
+            }
             attempts++;
         }
         throw new SecurityException("password breach attempt!");

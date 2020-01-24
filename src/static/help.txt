@@ -7,3 +7,4 @@ Type the cmd in brackets to get the appropriate result.
 5) "delete" - remove an employee providing an id
 6) "new" - adds new employee
 7) "help" - displays the help screen
+8) "exit" - quit program

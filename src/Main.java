@@ -19,34 +19,39 @@ public class Main {
         while (true) {
             System.out.println("Provide a command:");
             String s = scan.nextLine();
-            switch (s) {
-                case "do":
-                    performSpecialMethod(employees);
-                    break;
-                case "view_by_str":
-                    viewByString(employees);
-                    break;
-                case "view_by_type":
-                    viewEmployeesByType(employees);
-                    break;
-                case "view_all":
-                    viewAll(employees);
-                    break;
-                case "delete":
-                    deleteEmployee(employees);
-                    break;
-                case "new":
-                    newEmployee(employees, idGen);
-                    break;
-                case "help":
-                    Utils.printTextFile("help.txt");
-                    break;
-                case "exit":
-                    System.out.println("Exiting program. Goodbye!");
-                    return;
-                default:
-                    System.out.println("Wrong command name!");
-                    break;
+            try {
+                switch (s) {
+                    case "do":
+                        performSpecialMethod(employees);
+                        break;
+                    case "view_by_str":
+                        viewByString(employees);
+                        break;
+                    case "view_by_type":
+                        viewEmployeesByType(employees);
+                        break;
+                    case "view_all":
+                        viewAll(employees);
+                        break;
+                    case "delete":
+                        deleteEmployee(employees, idGen);
+                        break;
+                    case "new":
+                        newEmployee(employees, idGen);
+                        break;
+                    case "help":
+                        Utils.printTextFile("help.txt");
+                        break;
+                    case "exit":
+                        System.out.println("Exiting program. Goodbye!");
+                        return;
+                    default:
+                        System.out.println("Wrong command name!");
+                        break;
+                }
+            } catch (SecurityException e) {
+                System.out.println(e.getMessage());
+                return;
             }
         }
     }
@@ -63,10 +68,9 @@ public class Main {
     }
 
     private static void viewByString(List<Employee> employees) throws SecurityException {
-        if (Utils.employeeTypeInDB(employees, "Admin")) {
-            adminVerification(employees);
-        }
-        System.out.println("Please provide a string or integer to search in the DB for:");
+        adminVerification(employees);
+
+        System.out.println("Please provide a string to search in the names of employees:");
         Scanner scan = new Scanner(System.in);
         String searched = scan.nextLine();
         employees.stream().filter(e -> e.getName().contains(searched)).
@@ -74,19 +78,14 @@ public class Main {
     }
 
     private static void viewAll(List<Employee> employees) throws SecurityException {
-        if (Utils.employeeTypeInDB(employees, "Admin")) {
-            adminVerification(employees);
-        }
+        adminVerification(employees);
+
         employees.forEach(Employee::printEmployeeData);
     }
 
-    private static void adminVerification(List<Employee> employees) {
-        Admin admin = (Admin) Utils.getEmployeeOfType(employees, "Admin");
-        System.out.println("Since there's an admin on board, please provide password to access employee data:");
-        admin.getPassword();
-    }
+    private static void viewEmployeesByType(List<Employee> employees) throws SecurityException {
+        adminVerification(employees);
 
-    private static void viewEmployeesByType(List<Employee> employees) {
         System.out.println("Provide employee type:");
         Scanner scan = new Scanner(System.in);
         String className = scan.nextLine();
@@ -99,7 +98,15 @@ public class Main {
         }
     }
 
-    private static void deleteEmployee(List<Employee> employees) {
+    private static void adminVerification(List<Employee> employees) {
+        if (Utils.employeeTypeInDB(employees, "Admin")) {
+            Admin admin = (Admin) Utils.getEmployeeOfType(employees, "Admin");
+            System.out.println("Since there's an admin on board, please provide password to access employee data:");
+            admin.getPassword();
+        }
+    }
+
+    private static void deleteEmployee(List<Employee> employees, AtomicInteger idGen) {
         System.out.println("Provide employee id:");
         Scanner scan = new Scanner(System.in);
         int id = Utils.getIntFromStringInput(scan.nextLine());
@@ -114,6 +121,7 @@ public class Main {
                     manager.removeOneFromManagedEmployees(id);
                 }
                 employees.removeIf(employee -> employee.getId() == id);
+                idGen.decrementAndGet();
                 System.out.printf("Employee with id: %d deleted.\n", id);
             } else {
                 System.out.printf("Employee with id: %d doesn't exist.\n", id);

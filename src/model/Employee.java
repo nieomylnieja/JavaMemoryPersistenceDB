@@ -10,7 +10,7 @@ public abstract class Employee {
     private final static String COMPANY_NAME = "EVIL C.O.";
 
     public Employee(EmployeePayload payload) {
-        this.id = payload.id;
+        this.id = payload.idGen.incrementAndGet();
         this.name = payload.name;
         this.surname = payload.surname;
         this.yearsOfExperience = payload.yearsOfExperience;

@@ -5,14 +5,14 @@ import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class EmployeePayload {
-    public int id;
+    public AtomicInteger idGen;
     public String name;
     public String surname;
     public String classType;
     public int yearsOfExperience;
 
-    public EmployeePayload(AtomicInteger id) {
-        this.id = id.incrementAndGet();
+    public EmployeePayload(AtomicInteger idGen) {
+        this.idGen = idGen;
     }
 
     public void setNameAndSurname() throws IllegalArgumentException {
