@@ -6,6 +6,7 @@ import factory.EmployeeFactory;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+@SuppressWarnings("unchecked")
 public class Main {
     public static void main(String[] args) {
 

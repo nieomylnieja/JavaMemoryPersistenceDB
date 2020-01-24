@@ -59,7 +59,7 @@ public class Utils {
     }
 
     public static void printTextFile(String filename) {
-        try (BufferedReader br = new BufferedReader(new FileReader("src/static/" + filename))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("static/" + filename))) {
             String line;
 
             while ((line = br.readLine()) != null) {
